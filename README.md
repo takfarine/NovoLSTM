@@ -9,21 +9,17 @@ The `NovoLSTM` is a custom LSTM (Long Short-Term Memory) layer designed to incor
     $$
     i_t = \text{LayerNorm}(\sigma(W_i \cdot [h_{t-1}, x_t] + b_i)) \times \text{softmax}(W_{i'} \cdot [h_{t-1}, x_t] + b_{i'})
     $$
-
-    
     Where:
-    - \( \sigma \) is the sigmoid activation.
-    - \( \text{LayerNorm} \) is layer normalization.
-    - \( W_i, W_{i'} \) are weight matrices.
-    - \( b_i, b_{i'} \) are bias vectors.
-
-
+        - \( \sigma \) is the sigmoid activation.
+        - \( \text{LayerNorm} \) is layer normalization.
+        - \( W_i, W_{i'} \) are weight matrices.
+        - \( b_i, b_{i'} \) are bias vectors.
 
 2. **Standard LSTM Dynamics**: 
     - The forget gate, cell update, and output gate remain consistent with traditional LSTM computations.
 
 3. **Layer Normalization**: 
-    - Applied on the input gate to possibly stabilize learning by normalizing the activations.
+    - Applied on the input gate to potentially stabilize learning by normalizing the activations.
 
 ## 📁 **Code Structure**
 
