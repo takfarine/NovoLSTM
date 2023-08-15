@@ -6,7 +6,10 @@ The `NovoLSTM` is a custom LSTM (Long Short-Term Memory) layer designed to incor
 
 1. **Customized Input Gate**: 
     - The input gate uses a unique formulation:
-    \[ i_t = \text{LayerNorm}(\sigma(W_i \cdot [h_{t-1}, x_t] + b_i)) \times \text{softmax}(W_{i'} \cdot [h_{t-1}, x_t] + b_{i'}) \]
+    $$
+    i_t = \text{LayerNorm}(\sigma(W_i \cdot [h_{t-1}, x_t] + b_i)) \times \text{softmax}(W_{i'} \cdot [h_{t-1}, x_t] + b_{i'})
+    $$
+
     
     Where:
     - \( \sigma \) is the sigmoid activation.
