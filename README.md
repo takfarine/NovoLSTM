@@ -33,11 +33,14 @@ The `NovoLSTM` is a custom LSTM (Long Short-Term Memory) layer designed to incor
 ```python
 import tensorflow as tf
 
+vocabulary_size = 10000  # size of your vocabulary
+embedding_dim = 100      # size of word embeddings
+sequence_length = 50     # length of input sequences
+
 # Define the model
-model = tf.keras.Sequential([
-    tf.keras.layers.Embedding(input_dim=5000, output_dim=64),
-    NovoLSTM(units=128),
-    tf.keras.layers.Dense(1, activation='sigmoid')
+model = tf.keras.models.Sequential([
+    tf.keras.layers.Embedding(input_dim=vocabulary_size, output_dim=embedding_dim, input_length=sequence_length),
+    tf.keras.layers.RNN(NovoLSTM(units=128)),
+    tf.keras.layers.Dense(units=3, activation='softmax')
 ])
 
-model.compile(loss='binary_crossentropy', optimizer='adam')
