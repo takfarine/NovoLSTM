@@ -13,10 +13,10 @@ i_t = \text{LayerNorm}(\sigma(W_i \cdot [h_{t-1}, x_t] + b_i)) \times \text{soft
 $$
 
 Where:
-- "σ" represents the sigmoid activation.
-- "LayerNorm" denotes layer normalization.
-- "Wi and Wi'" are the weight matrices for the input gate.
-- "bi and bi'" are the bias vectors for the input gate.
+- \( \sigma \) is the sigmoid activation.
+- \( \text{LayerNorm} \) is layer normalization.
+- \( W_i, W_{i'} \) are weight matrices.
+- \( b_i, b_{i'} \) are bias vectors.
 
 #### Why This Formulation?
 
