@@ -26,6 +26,24 @@ Where:
 
 3. **Exploratory Dynamics**: Neural network architectures are often enriched through experimentation. This novel approach aims to discover potential improvements in LSTM dynamics and address some of its inherent challenges.
 
+
+#### Mathematical Justification Behind the Custom Input Gate:
+
+In traditional LSTM units, the sigmoid function in the input gate ensures values lie between 0 and 1, which determines the extent of new information flowing into the cell state. However, the `NovoLSTM` offers a more advanced dynamic by incorporating layer normalization and softmax along with sigmoid:
+
+- **Sigmoid Activation**: It narrows its input values between 0 and 1, acting as a gating mechanism.
+  
+- **Layer Normalization**: By standardizing the activations across the layer, it aids in faster convergence during training and brings about consistency in activations.
+
+- **Softmax Activation**: When combined with sigmoid, it ensures that the distributed values sum up to one, thus accentuating the significance of certain features over others in the gate.
+
+The composite formula for `NovoLSTM`'s input gate grants:
+
+1. A gating mechanism via sigmoid.
+2. Activation stabilization using layer normalization.
+3. A dynamic way of assigning priority or attention to certain features more than others with softmax.
+
+
 ### Other Features
 
 - **Standard LSTM Dynamics**: The forget gate, cell update, and output gate remain consistent with traditional LSTM computations, ensuring the cell retains its core functionalities.
