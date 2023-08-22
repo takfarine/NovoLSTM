@@ -59,7 +59,7 @@ This function exponentiates its input and then normalizes it. It is typically us
 
 The combined equation for the input gate in `NovoLSTM` is:
 
-\[ i_t = \text{LayerNorm}(\sigma(W_i \cdot [h_{t-1}, x_t] + b_i)) \times \text{softmax}(W_{i'} \cdot [h_{t-1}, x_t] + b_{i'}) \]
+$`[ i_t = \text{LayerNorm}(\sigma(W_i \cdot [h_{t-1}, x_t] + b_i)) \times \text{softmax}(W_{i'} \cdot [h_{t-1}, x_t] + b_{i'}) ]`$
 
 The rationale for this combined approach is:
 - The sigmoid function provides the gating mechanism, deciding which values are allowed to flow.
