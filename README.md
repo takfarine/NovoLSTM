@@ -15,8 +15,8 @@ $$
 Where:
 - "σ" represents the sigmoid activation.
 - "LayerNorm" denotes layer normalization.
-- "W_i, W_{i'}" are the weight matrices.
-- "b_i, b_{i'}" are the bias vectors.
+- "Wi and Wi'" are the weight matrices for the input gate.
+- "bi and bi'" are the bias vectors for the input gate.
 
 #### Why This Formulation?
 
