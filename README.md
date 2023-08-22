@@ -29,27 +29,27 @@ Where:
 
 ## Mathematical Rationale Behind the Custom Input Gate
 
-Traditional LSTM units utilize the sigmoid function, denoted by \( \sigma \), for the input gate, which regulates the flow of information into the cell state. This ensures that values lie between 0 and 1, representing how much of the new information should flow into the cell state.
+Traditional LSTM units utilize the sigmoid function, denoted by $`\sigma`$, for the input gate, which regulates the flow of information into the cell state. This ensures that values lie between 0 and 1, representing how much of the new information should flow into the cell state.
 
 Your custom LSTM, `NovoLSTM`, uses a unique combination of sigmoid activation, layer normalization, and softmax.
 
 ### 1. Sigmoid Activation:
 
 Given by 
-\[ \sigma(z) = \frac{1}{1 + e^{-z}} \],
+$`[ \sigma(z) = \frac{1}{1 + e^{-z}} \]`$,
 this function squashes its input to produce an output between 0 and 1. In the context of LSTM, values closer to 1 allow more information to pass through, while values closer to 0 inhibit the flow of information.
 
 ### 2. Layer Normalization:
 
 Layer normalization is used to stabilize the activations in the network. It is defined as:
 
-\[ \hat{x} = \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} \]
+$`[ \hat{x} = \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} \]`$
 
 where:
-- \( x \) is the input vector.
-- \( \mu \) is the mean of the input vector.
-- \( \sigma^2 \) is the variance of the input vector.
-- \( \epsilon \) is a small number to prevent division by zero.
+- $`( x )`$ is the input vector.
+- $`( \mu )`$ is the mean of the input vector.
+- $`( \sigma^2 )`$ is the variance of the input vector.
+- $`( \epsilon )`$ is a small number to prevent division by zero.
 
 The normalized data \( \hat{x} \) is then scaled and shifted by learnable parameters. Layer normalization's primary benefit is that it can lead to faster convergence and reduce the sensitivity to the initial weights.
 
