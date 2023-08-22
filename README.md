@@ -13,8 +13,6 @@ i_t = \text{LayerNorm}(\sigma(W_i \cdot [h_{t-1}, x_t] + b_i)) \times \text{soft
 $$
 
 Where:
-
-Where:
 - "σ" represents the sigmoid activation.
 - "LayerNorm" denotes layer normalization.
 - "W_i, W_{i'}" are the weight matrices.
