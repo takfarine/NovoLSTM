@@ -15,8 +15,8 @@ $$
 Where:
 - $`\sigma`$ is the sigmoid activation.
 - $`\text{LayerNorm}`$ is layer normalization.
-- $`\( W_i, W_{i'})`$ are weight matrices.
-- $`\( b_i, b_{i'})`$ are bias vectors.
+- $`( W_i, W_{i'})`$ are weight matrices.
+- $`( b_i, b_{i'})`$ are bias vectors.
 
 #### Why This Formulation?
 
