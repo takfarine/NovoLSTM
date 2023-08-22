@@ -27,21 +27,47 @@ Where:
 3. **Exploratory Dynamics**: Neural network architectures are often enriched through experimentation. This novel approach aims to discover potential improvements in LSTM dynamics and address some of its inherent challenges.
 
 
-#### Mathematical Justification Behind the Custom Input Gate:
+## Mathematical Rationale Behind the Custom Input Gate
 
-In traditional LSTM units, the sigmoid function in the input gate ensures values lie between 0 and 1, which determines the extent of new information flowing into the cell state. However, the `NovoLSTM` offers a more advanced dynamic by incorporating layer normalization and softmax along with sigmoid:
+Traditional LSTM units utilize the sigmoid function, denoted by \( \sigma \), for the input gate, which regulates the flow of information into the cell state. This ensures that values lie between 0 and 1, representing how much of the new information should flow into the cell state.
 
-- **Sigmoid Activation**: It narrows its input values between 0 and 1, acting as a gating mechanism.
-  
-- **Layer Normalization**: By standardizing the activations across the layer, it aids in faster convergence during training and brings about consistency in activations.
+Your custom LSTM, `NovoLSTM`, uses a unique combination of sigmoid activation, layer normalization, and softmax.
 
-- **Softmax Activation**: When combined with sigmoid, it ensures that the distributed values sum up to one, thus accentuating the significance of certain features over others in the gate.
+### 1. Sigmoid Activation:
 
-The composite formula for `NovoLSTM`'s input gate grants:
+Given by 
+\[ \sigma(z) = \frac{1}{1 + e^{-z}} \],
+this function squashes its input to produce an output between 0 and 1. In the context of LSTM, values closer to 1 allow more information to pass through, while values closer to 0 inhibit the flow of information.
 
-1. A gating mechanism via sigmoid.
-2. Activation stabilization using layer normalization.
-3. A dynamic way of assigning priority or attention to certain features more than others with softmax.
+### 2. Layer Normalization:
+
+Layer normalization is used to stabilize the activations in the network. It is defined as:
+
+\[ \hat{x} = \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} \]
+
+where:
+- \( x \) is the input vector.
+- \( \mu \) is the mean of the input vector.
+- \( \sigma^2 \) is the variance of the input vector.
+- \( \epsilon \) is a small number to prevent division by zero.
+
+The normalized data \( \hat{x} \) is then scaled and shifted by learnable parameters. Layer normalization's primary benefit is that it can lead to faster convergence and reduce the sensitivity to the initial weights.
+
+### 3. Softmax Activation:
+
+This function exponentiates its input and then normalizes it. It is typically used in the output layer of a classification network because its output can be interpreted as probabilities. In the context of your input gate, the softmax ensures that the input values are normalized to a distribution of values that sum to one. This might be useful to prioritize certain features over others when updating the cell state.
+
+The combined equation for the input gate in `NovoLSTM` is:
+
+\[ i_t = \text{LayerNorm}(\sigma(W_i \cdot [h_{t-1}, x_t] + b_i)) \times \text{softmax}(W_{i'} \cdot [h_{t-1}, x_t] + b_{i'}) \]
+
+The rationale for this combined approach is:
+- The sigmoid function provides the gating mechanism, deciding which values are allowed to flow.
+- Layer normalization stabilizes these values, ensuring that no particular feature overwhelms the others due to scale differences.
+- The softmax, when multiplied with the sigmoid output, offers a way of prioritizing or giving attention to certain features more than others.
+
+By this formulation, the network can potentially learn which features to prioritize in different contexts, making it dynamic and more adaptive to intricate data patterns. However, as with many neural network enhancements, the effectiveness of this method is highly dependent on the specific task and the data at hand. Regular evaluations and comparisons with traditional LSTM structures are advisable to ensure that this new formulation provides tangible benefits.
+
 
 
 ### Other Features
