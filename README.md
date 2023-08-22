@@ -14,12 +14,12 @@ $$
 
 Where:
 
--\text{LayerNorm}( \sigma \) is the sigmoid activation.
-- \( \text{LayerNorm} \) is layer normalization.
-- \( W_i, W_{i'} \) are weight matrices.
-- \( b_i, b_{i'} \) are bias vectors.
+Where:
+- "σ" represents the sigmoid activation.
+- "LayerNorm" denotes layer normalization.
+- "W_i, W_{i'}" are the weight matrices.
+- "b_i, b_{i'}" are the bias vectors.
 
-$$
 #### Why This Formulation?
 
 1. **Enhanced Regularization**: Layer normalization can lead to faster convergence and can stabilize the training, especially in deeper networks.
